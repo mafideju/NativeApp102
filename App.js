@@ -1,24 +1,42 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import React, { useState } from 'react'
+import { StyleSheet, Text, View, Button } from 'react-native'
 
-export default function App() {
-  const [outputText, setOutputText] = useState('Este é o texto original!!!');
+const App = () => {
+  const [outputText, setOutputText] = useState('06969 => Este é o texto original!!!')
   return (
     <View style={styles.container}>
-      <Text>{outputText}</Text>
-      <Button title="Muda !" onPress={() => setOutputText('Texto Alterado com Sucesso')} />
+      <Text
+        style={styles.textOne}
+      >
+        {outputText}
+      </Text>
+      <Button
+        style={styles.buttonOne}
+        title="Muda !"
+        onPress={() => setOutputText('WOW Texto Alterado com Sucesso !!!')}
+      />
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    color: '#FFFF33',
+    backgroundColor: 'black',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  textOne: {
+    color: 'white',
     fontSize: 20,
     fontWeight: 'bold',
-    // backgroundColor: 'black',
-    alignItems: 'center',
-    justifyContent: 'center',
+    marginBottom: 30
   },
-});
+  buttonOne: {
+    width: 100,
+    color: 'black',
+    backgroundColor: 'white'
+  }
+})
+
+export default App
