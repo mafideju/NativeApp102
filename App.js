@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import {
   StyleSheet,
   View,
-  FlatList
+  FlatList,
+  Button
 } from 'react-native'
 import GoalItem from './components/GoalItem'
 import GoalInput from './components/GoalInput'
@@ -10,25 +11,36 @@ import GoalInput from './components/GoalInput'
 const App = () => {
   const [enteredGoal, setEnteredGoal] = useState('')
   const [courseGoals, setCourseGoals] = useState([])
+  const [addMode, setAddMode] = useState(false)
 
   const inputChangeHandler = text => setEnteredGoal(text)
-  const addGoalHandler = () => setCourseGoals(goals => [...goals, {
-    id: Math.random().toString(),
-    value: enteredGoal
-  }])
+  const addGoalHandler = () => {
+    setCourseGoals(goals => [...goals, {
+      id: Math.random().toString(),
+      value: enteredGoal
+    }])
+    // console.log(enteredGoal)
+    setAddMode(false)
+    setEnteredGoal('')
+  }
+  const cancelGoalHandler = () => setAddMode(false)
   const deleteGoalHandler = id => {
     setCourseGoals(goals => {
-      console.log(goals[0])
-      console.log(id)
       return goals.filter(goal => goal.id !== id)
     })
   }
 
   return (
     <View style={styles.container}>
+      <Button
+        title="Nova Tarefa"
+        onPress={() => setAddMode(true)}
+      />
       <GoalInput
+        visible={addMode}
         inputChangeHandler={inputChangeHandler}
         addGoalHandler={addGoalHandler}
+        cancelGoalHandler={cancelGoalHandler}
         enteredGoal={enteredGoal}
       />
       <FlatList
@@ -49,11 +61,6 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     padding: 50
-  },
-  form: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'baseline'
   },
   input: {
     borderBottomColor: 'black',

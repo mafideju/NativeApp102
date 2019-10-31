@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   Text
 } from 'react-native'
+import PropTypes from 'prop-types'
 
 const GoalItem = ({ goal, onDelete, id }) => {
   return (
@@ -27,5 +28,11 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1
   }
 })
+
+GoalItem.propTypes = {
+  goal: PropTypes.string,
+  onDelete: PropTypes.func,
+  id: PropTypes.string
+}
 
 export default GoalItem

@@ -3,31 +3,57 @@ import {
   StyleSheet,
   TextInput,
   View,
+  Modal,
   Button
 } from 'react-native'
+import PropTypes from 'prop-types'
 
-const GoalInput = ({ inputChangeHandler, addGoalHandler, enteredGoal }) => {
+const GoalInput = ({
+  inputChangeHandler,
+  addGoalHandler,
+  cancelGoalHandler,
+  enteredGoal,
+  visible
+}) => {
   return (
-    <View style={styles.form}>
-      <TextInput
-        style={styles.input}
-        placeholder="Compras do Dia"
-        onChangeText={inputChangeHandler}
-        value={enteredGoal}
-      />
-      <Button
-        title=" + "
-        onPress={addGoalHandler}
-      />
-    </View>
+    <Modal visible={visible} animationType="slide">
+      <View style={styles.form}>
+        <TextInput
+          style={styles.input}
+          placeholder="Compras do Dia"
+          onChangeText={inputChangeHandler}
+          value={enteredGoal}
+        />
+        <View style={styles.buttons}>
+          <Button
+            title=" CANCELAR "
+            color="red"
+            style={styles.buttonIt}
+            onPress={cancelGoalHandler}
+          />
+          <Button
+            title=" NOVA TAREFA "
+            color="green"
+            style={styles.buttonIt}
+            onPress={addGoalHandler}
+          />
+        </View>
+      </View>
+    </Modal>
   )
 }
 
 const styles = StyleSheet.create({
   form: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  buttons: {
+    width: '100%',
     flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'baseline'
+    justifyContent: 'space-evenly',
+    marginTop: 10
   },
   input: {
     borderBottomColor: 'black',
@@ -36,5 +62,13 @@ const styles = StyleSheet.create({
     width: '80%'
   }
 })
+
+GoalInput.propTypes = {
+  inputChangeHandler: PropTypes.func,
+  addGoalHandler: PropTypes.func,
+  cancelGoalHandler: PropTypes.func,
+  enteredGoal: PropTypes.string,
+  visible: PropTypes.bool
+}
 
 export default GoalInput
