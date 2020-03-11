@@ -1,80 +1,23 @@
-import React, { useState } from 'react'
-import {
-  StyleSheet,
-  View,
-  FlatList,
-  Button
-} from 'react-native'
-import GoalItem from './components/GoalItem'
-import GoalInput from './components/GoalInput'
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 
-const App = () => {
-  const [enteredGoal, setEnteredGoal] = useState('')
-  const [courseGoals, setCourseGoals] = useState([])
-  const [addMode, setAddMode] = useState(false)
-
-  const inputChangeHandler = text => setEnteredGoal(text)
-  const addGoalHandler = () => {
-    setCourseGoals(goals => [...goals, {
-      id: Math.random().toString(),
-      value: enteredGoal
-    }])
-    // console.log(enteredGoal)
-    setAddMode(false)
-    setEnteredGoal('')
-  }
-  const cancelGoalHandler = () => setAddMode(false)
-  const deleteGoalHandler = id => {
-    setCourseGoals(goals => {
-      return goals.filter(goal => goal.id !== id)
-    })
-  }
-
+export default function App() {
   return (
     <View style={styles.container}>
-      <Button
-        title="Nova Tarefa"
-        onPress={() => setAddMode(true)}
-      />
-      <GoalInput
-        visible={addMode}
-        inputChangeHandler={inputChangeHandler}
-        addGoalHandler={addGoalHandler}
-        cancelGoalHandler={cancelGoalHandler}
-        enteredGoal={enteredGoal}
-      />
-      <FlatList
-        keyExtractor={item => item.id}
-        data={courseGoals}
-        renderItem={item => (
-          <GoalItem
-            id={item.item.id}
-            goal={item.item.value}
-            onDelete={deleteGoalHandler}
-          />
-        )}
-      />
+      <Text style={styles.text}>Open up App.js to start working on your app!</Text>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
-    padding: 50
+    flex: 1,
+    backgroundColor: '#001',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  input: {
-    borderBottomColor: 'black',
-    borderBottomWidth: 1,
-    padding: 5,
-    width: '80%'
-  },
-  outputList: {
-    padding: 10,
-    backgroundColor: 'black',
-    color: 'white',
-    borderBottomColor: 'white',
-    borderBottomWidth: 1
+  text: {
+    color: '#fff',
+    fontWeight: '200'
   }
-})
-
-export default App
+});
