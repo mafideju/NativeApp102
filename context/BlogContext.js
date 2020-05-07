@@ -1,15 +1,5 @@
-import React from 'react';
+import createDataContext from './createDataContext';
+import { blogReducer } from '../store/reducer/blogReducer';
+import { addPost, removePost, editPost } from '../store/action/blogAction';
 
-const BlogContext = React.createContext();
-
-const blogPosts = [
-    { title: 'Post One #1' },
-    { title: 'Post Two #2' },
-    { title: 'Post Three #3' },
-];
-
-export const BlogProvider = ({ children }) => (
-    <BlogContext.Provider value={blogPosts}>{children}</BlogContext.Provider>
-);
-
-export default BlogContext;
+export const { Context, Provider } = createDataContext(blogReducer, { addPost, removePost, editPost }, [{ id: '1', title: 'Forçæ Márcio', content: 'Não desista, pra cima deles' }]);
