@@ -7,6 +7,7 @@ import * as Font from 'expo-font';
 import { COLORS } from './utils/COLORS';
 import { Provider } from './context/BlogContext';
 import HomeScreen from './screens/HomeScreen';
+import SplashScreen from './screens/SplashScreen';
 import ShowScreen from './screens/ShowScreen';
 import CreateScreen from './screens/CreateScreen';
 import EditScreen from './screens/EditScreen';
@@ -21,21 +22,24 @@ const fetchFonts = () => {
 }
 
 const navigator = createStackNavigator({
+  Splash: SplashScreen,
   Home: HomeScreen,
   Post: ShowScreen,
   Novo: CreateScreen,
   Editar: EditScreen
 }, {
-  initialRouteName: 'Home',
+  initialRouteName: 'Splash',
   defaultNavigationOptions: {
-    title: 'Maffee Log',
+    title: 'Amanda Mendes',
     headerStyle: {
-      backgroundColor: COLORS.black1,
+      backgroundColor: COLORS.purpleDark,
     },
     headerTintColor: COLORS.white1,
+    headerTitleContainerStyle: {
+      padding: 10
+    },
     headerTitleStyle: {
       fontFamily: 'open-sans',
-      // fontWeight: 'bold',
     }
   }
 });

@@ -20,6 +20,8 @@ const PostForm = ({
             />
             <TextInput
                 style={styles.input}
+                multiline = {true}
+                numberOfLines = {10}
                 placeholder='Mensagem'
                 value={content}
                 onChangeText={val => setContent(val)}
